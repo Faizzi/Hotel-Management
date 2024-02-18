@@ -1,7 +1,7 @@
 import User from "../models/user.model.js"
 import bcrypt from "bcryptjs"
 
-export const signup = async(req,res)=>{
+export const signup = async(req,res,next)=>{
    try {
     const {username,email,password} = req.body
     if(!username || !email || !password){
@@ -22,7 +22,7 @@ export const signup = async(req,res)=>{
     }
     
    } catch (error) {
-    res.status(500).json(error.message)
+      next(error)
    }
 
 }
